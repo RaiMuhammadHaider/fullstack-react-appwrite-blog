@@ -34,7 +34,7 @@ function App() {
   ( <div className='min-h-screen    bg-gray-400'>
     <Header />
      <main >
-      TOdo <Outlet />
+      <Outlet />
      </main>
       <Footer />
     </div>

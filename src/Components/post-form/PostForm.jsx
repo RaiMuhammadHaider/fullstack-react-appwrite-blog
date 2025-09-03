@@ -298,58 +298,64 @@ const PostForm = ({ post }) => {
   };
 
   return (
-    <form onSubmit={handleSubmit(submit)} className="flex flex-wrap">
-      <div className="w-2/3 px-2">
+    <form
+      onSubmit={handleSubmit(submit)}
+      className="flex flex-col lg:flex-row gap-6 p-6 bg-white rounded-xl shadow-md border border-gray-200"
+    >
+      {/* Left Section */}
+      <div className="flex-1 space-y-4">
         <Input
-          label="Title :"
-          placeholder="Title"
-          className="mb-4"
+          label="Title"
+          placeholder="Enter post title"
+          className="w-full"
           {...register('title', { required: true })}
         />
         <Input
-          label="Slug :"
-          placeholder="Slug"
-          className="mb-4"
+          label="Slug"
+          placeholder="Post slug"
+          className="w-full"
           {...register('slug', { required: true })}
           onInput={(e) =>
             setValue('slug', slugTransform(e.currentTarget.value), { shouldValidate: true })
           }
         />
-        <RTE
-          label="Content :"
-          name="content"
-          control={control}
-          defaultValue={getValues('content')}
-        />
+        <div>
+          <RTE
+            label="Content"
+            name="content"
+            control={control}
+            defaultValue={getValues('content')}
+          />
+        </div>
       </div>
 
-      <div className="w-1/3 px-2">
+      {/* Right Section */}
+      <div className="w-full lg:w-1/3 space-y-4">
         <Input
-          label="Featured Image :"
+          label="Featured Image"
           type="file"
-          className="mb-4"
           accept="image/png, image/jpg, image/jpeg, image/gif"
           {...register('image', { required: !post })}
         />
         {post && (
-          <div className="w-full mb-4">
+          <div className="w-full">
             <img
               src={appwriteService.getFilePreview(post.featuredImage)}
               alt={post.title}
-              className="rounded-lg"
+              className="rounded-lg border border-gray-300 shadow-sm"
             />
           </div>
         )}
         <Select
           options={['active', 'inactive']}
           label="Status"
-          className="mb-4"
           {...register('status', { required: true })}
         />
         <Button
           type="submit"
-          bgColor={post ? 'bg-green-500' : undefined}
-          className="w-full"
+          className={`w-full py-3 rounded-lg font-semibold ${
+            post ? 'bg-green-500 hover:bg-green-600' : 'bg-blue-600 hover:bg-blue-700'
+          } text-white transition`}
         >
           {post ? 'Update' : 'Submit'}
         </Button>
@@ -359,4 +365,3 @@ const PostForm = ({ post }) => {
 };
 
 export default PostForm;
-
