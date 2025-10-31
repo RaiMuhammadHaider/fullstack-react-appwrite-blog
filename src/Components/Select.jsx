@@ -11,7 +11,7 @@ const Select = ({
 const id = useId()
   return (
     <div className='w-full'>
-        {label && <label htmlFor={id} ></label> }
+        {label && <label htmlFor={id} >{label}</label> }
         <select 
          id= {id}
          {...props}

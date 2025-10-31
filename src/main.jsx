@@ -6,7 +6,7 @@ import { Provider } from 'react-redux'
 import { store } from './Store/Store.js'
 import {
   createBrowserRouter,
-  RouterProvider, // ✅ correct import
+  RouterProvider, 
 } from 'react-router-dom'
 
 import Home from './Components/Pages/Home.jsx'
